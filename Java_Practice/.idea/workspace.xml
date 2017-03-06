@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b68b325-042d-4dcf-9bf9-1438ed530529" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/company/AnagramPalindrome.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/company/AnagramPalindromeTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../filesearch/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../filesearch/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../filesearch/src/com/company/FileSearchApp.java" afterPath="$PROJECT_DIR$/../filesearch/src/com/company/FileSearchApp.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

@@ -3,12 +3,21 @@ package com.company;
  * and put all matching files into a zip file.
  */
 
-import java.io.File;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 public class FileSearchApp {
     String path;
     String regex;
     String zipFileName;
+    Pattern pattern;
+    List<File> zipFiles = new ArrayList<File>();
 
     public static void main(String[] args) {
         FileSearchApp app = new FileSearchApp();
@@ -29,19 +38,73 @@ public class FileSearchApp {
         }
     }
 
-    public void walkDirectory(String path) {
-        System.out.println("walkDirectory: " + path);
-        searchFile(null);
-        addFileToZip(null);
+    public void walkDirectory(String path) throws IOException {
+        Files.walk(Paths.get(path)).forEach(f -> processFile(f.toFile()));
+        zipFiles();
     }
 
-    public void searchFile(File file) {
-        System.out.println("searchFile: " + file);
+    public boolean searchFile(File file) throws IOException {
+        // anyMatch will short circuit and stop and return true as soon as match is found
+        return Files.lines(file.toPath()).anyMatch(t -> searchText(t));
+    }
+
+    public boolean searchText(String text) {
+        if (this.getRegex() == null) {
+            return true;
+        } else {
+            return this.pattern.matcher(text).find();
+        }
+        /* One-line version of this code:
+         * return (this.getRegex() == null) ? true : text.toLowerCase().contains(this.getRegex().toLowerCase());
+         */
     }
 
     public void addFileToZip(File file) {
-        System.out.println("addFileToZip: " + file);
+        if (getZipFileName() != null) {
+            zipFiles.add(file);
+        }
+    }
 
+    public void zipFiles() throws IOException {
+        try (ZipOutputStream out = new ZipOutputStream(new FileOutputStream(getZipFileName()))) {
+            File baseDir = new File(getPath());
+
+            for (File file : zipFiles) {
+                // fileName must be a relative path, not an absolute one
+                String fileName = getRelativeFilename(file, baseDir);
+
+                ZipEntry zipEntry = new ZipEntry(fileName);
+                zipEntry.setTime(file.lastModified());
+                out.putNextEntry(zipEntry);
+
+                Files.copy(file.toPath(), out);
+
+                out.closeEntry();
+            }
+        }
+    }
+
+    public String getRelativeFilename(File file, File baseDir) {
+        String fileName = file.getAbsolutePath().substring(baseDir.getAbsolutePath().length());
+
+        // IMPORTANT: the ZipEntry file name must use "/", not "\"
+        fileName = fileName.replace('\\', '/');
+
+        while (fileName.startsWith("/")) {
+            fileName = fileName.substring(1);
+        }
+
+        return fileName;
+    }
+
+    public void processFile(File file) {
+        try {
+            if (searchFile(file)) {
+                addFileToZip(file);
+            }
+        } catch (IOException|UncheckedIOException e) {
+            System.out.println("Error processing file: " + file + ": " + e);
+        }
     }
 
     public String getPath() {
@@ -58,6 +121,7 @@ public class FileSearchApp {
 
     public void setRegex(String regex) {
         this.regex = regex;
+        this.pattern = Pattern.compile(regex);
     }
 
     public String getZipFileName() {
