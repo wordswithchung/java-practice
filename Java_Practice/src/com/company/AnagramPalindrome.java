@@ -14,7 +14,7 @@ public class AnagramPalindrome {
         // constructor
     }
 
-    public static boolean isAnagramOfPalindrome(String letters) {
+    /*public static boolean isAnagramOfPalindrome(String letters) {
         HashMap<String, Integer> map= new HashMap<String, Integer>();
 
         for (Character letter : letters) {
@@ -27,5 +27,5 @@ public class AnagramPalindrome {
 
 
         }
-    }
+    }*/
 }
