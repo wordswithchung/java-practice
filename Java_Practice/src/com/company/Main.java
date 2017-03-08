@@ -27,5 +27,7 @@ public class Main {
 
         System.out.println(AddToZero.isSumZero(numbersTrue2));
 
+        System.out.println(BinarySearch.myBinarySearch(numbersTrue, 2));
+
     }
 }
