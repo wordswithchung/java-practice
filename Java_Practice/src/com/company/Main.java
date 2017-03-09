@@ -1,5 +1,7 @@
 package com.company;
 
+import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
+
 import java.util.ArrayList;
 
 public class Main {
@@ -29,5 +31,6 @@ public class Main {
 
         System.out.println(BinarySearch.myBinarySearch(numbersTrue, 2));
 
+        System.out.println(FindTheRange.findRange(numbersTrue));
     }
 }
