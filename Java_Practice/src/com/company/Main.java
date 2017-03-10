@@ -32,5 +32,9 @@ public class Main {
         System.out.println(BinarySearch.myBinarySearch(numbersTrue, 2));
 
         System.out.println(FindTheRange.findRange(numbersTrue));
+
+        System.out.println(MoreVowels.hasMoreVowels("aeiou"));
+        System.out.println(MoreVowels.hasMoreVowels("hell"));
+        System.out.println(MoreVowels.hasMoreVowels("hi"));
     }
 }
