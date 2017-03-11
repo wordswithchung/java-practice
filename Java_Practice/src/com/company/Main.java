@@ -1,43 +1,22 @@
 package com.company;
 
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
-
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        ArrayList<Integer> numbersTrue = new ArrayList<Integer>();
-        numbersTrue.add(0);
-        numbersTrue.add(2);
-        numbersTrue.add(5);
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+        numbers.add(4);
 
-        System.out.println(AddToZero.isSumZero(numbersTrue));
+        List<Integer> numbers1 = new ArrayList<>();
+        numbers1.add(1);
 
-        ArrayList<Integer> numbersFalse = new ArrayList<Integer>();
-        numbersFalse.add(9);
-        numbersFalse.add(3);
-        numbersFalse.add(4);
+        System.out.println(RecursiveSum.recursiveSum(numbers1));
 
-        System.out.println(AddToZero.isSumZero(numbersFalse));
-
-        ArrayList<Integer> numbersTrue2 = new ArrayList<Integer>();
-        numbersTrue2.add(-1);
-        numbersTrue2.add(5);
-        numbersTrue2.add(83);
-        numbersTrue2.add(-5);
-
-        System.out.println(AddToZero.isSumZero(numbersTrue2));
-
-        System.out.println(BinarySearch.myBinarySearch(numbersTrue, 2));
-
-        System.out.println(FindTheRange.findRange(numbersTrue));
-
-        System.out.println(MoreVowels.hasMoreVowels("aeiou"));
-        System.out.println(MoreVowels.hasMoreVowels("hell"));
-        System.out.println(MoreVowels.hasMoreVowels("hi"));
-
-        System.out.println(ShowEven.showEven(numbersFalse));
     }
 }
