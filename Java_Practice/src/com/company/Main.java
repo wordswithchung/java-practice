@@ -18,6 +18,7 @@ public class Main {
         ArrayList<Integer> numbersFalse = new ArrayList<Integer>();
         numbersFalse.add(9);
         numbersFalse.add(3);
+        numbersFalse.add(4);
 
         System.out.println(AddToZero.isSumZero(numbersFalse));
 
@@ -36,5 +37,7 @@ public class Main {
         System.out.println(MoreVowels.hasMoreVowels("aeiou"));
         System.out.println(MoreVowels.hasMoreVowels("hell"));
         System.out.println(MoreVowels.hasMoreVowels("hi"));
+
+        System.out.println(ShowEven.showEven(numbersFalse));
     }
 }
